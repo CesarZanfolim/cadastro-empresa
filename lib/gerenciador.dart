@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:desafio_dart/cadastro.dart';
 import 'package:desafio_dart/cadastro_empresa.dart';
 
 class Gerenciador {
@@ -10,7 +11,7 @@ class Gerenciador {
     String telefone;
     String documento;
     String endereco;
-    String timeLog;
+    final timeLog;
 
     print('Nome Fantasia:');
     nome = stdin.readLineSync()!;
@@ -34,5 +35,8 @@ class Gerenciador {
     }
     documento = documentoDigitado;
     print('Digite o endereço:');
+    endereco = stdin.readLineSync()!;
+    timeLog = DateTime.now();
+    return;
   }
 }
