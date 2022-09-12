@@ -4,7 +4,7 @@ import 'package:desafio_dart/cadastro.dart';
 import 'package:desafio_dart/cadastro_empresa.dart';
 
 class Gerenciador {
-  static Empresa registrarEmpresa() {
+  static List<Cadastro> registrarEmpresa() {
     String id;
     String nome;
     String razaoSocial;
@@ -37,6 +37,7 @@ class Gerenciador {
     print('Digite o endereço:');
     endereco = stdin.readLineSync()!;
     timeLog = DateTime.now();
-    return;
+    List<Cadastro> lista = [];
+    return lista;
   }
 }

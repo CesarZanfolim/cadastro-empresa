@@ -1,5 +1,6 @@
 import "dart:io";
 import "package:desafio_dart/cadastro.dart";
+import 'package:desafio_dart/gerenciador.dart';
 
 void main() {
   Cadastro proz = Cadastro(
@@ -12,6 +13,5 @@ void main() {
       razaoSocial: 'razaoSocial',
       telefone: 'telefone');
 
-  List<Cadastro> prozLista = [proz];
-  print(prozLista[0].nomeSocio);
+  print(Gerenciador.registrarEmpresa());
 }
