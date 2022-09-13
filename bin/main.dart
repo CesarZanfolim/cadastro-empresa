@@ -1,17 +1,8 @@
-import "dart:io";
-import "package:desafio_dart/cadastro.dart";
-import 'package:desafio_dart/gerenciador.dart';
+import 'package:desafio_dart/console.dart';
+import 'package:desafio_dart/socio.dart';
 
-void main() {
-  Cadastro proz = Cadastro(
-      nomeSocio: 'César',
-      CPF: 'CPF',
-      CNPJ: 'CNPJ',
-      endereco: 'endereco',
-      timeLog: 'timeLog',
-      id: 'id',
-      razaoSocial: 'razaoSocial',
-      telefone: 'telefone');
+void main(List<String> args) {
+  final teste = Console.cadastrar();
 
-  print(Gerenciador.registrarEmpresa());
+  print(teste);
 }
