@@ -13,7 +13,7 @@ class Console {
     nome = stdin.readLineSync()!;
     print('Digite o número do documento (CPF ou CPPJ)');
     String documentoDigitado = stdin.readLineSync()!;
-    while (documentoDigitado.length < 11 && documentoDigitado.length > 14) {
+    while (documentoDigitado.length != 11 && documentoDigitado.length != 14) {
       print(
           'O documento digitado é inválido.\nPor favor, digite novamente utilizando apenas números:');
       documentoDigitado = stdin.readLineSync()!;
@@ -22,19 +22,25 @@ class Console {
     print('Digite o endereço');
     endereco = stdin.readLineSync()!;
     print('digite o telefone (Ex.: 11999999999');
-    numeroTelefone = stdin.readLineSync()!;
+    String telefoneDigitado = stdin.readLineSync()!;
+    while (documentoDigitado.length != 11) {
+      print(
+          'O telefone digitado é inválido.\nPor favor, digite novamente utilizando apenas números');
+      telefoneDigitado = stdin.readLineSync()!;
+    }
+    numeroTelefone = telefoneDigitado;
     if (numeroDocumento.length == 14) {
       return SocioPJ(
           nome: nome,
           endereco: endereco,
           cnpj: numeroDocumento,
-          telefone: numeroTelefone);
+          telefoneSocio: numeroTelefone);
     } else {
       return SocioPF(
           nome: nome,
           endereco: endereco,
           cpf: numeroDocumento,
-          telefone: numeroTelefone);
+          telefoneSocio: numeroTelefone);
     }
   }
 }

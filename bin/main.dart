@@ -1,8 +1,18 @@
+import 'dart:io';
+
 import 'package:desafio_dart/console.dart';
 import 'package:desafio_dart/socio.dart';
+import 'package:desafio_dart/socio_pj.dart';
 
 void main(List<String> args) {
-  final teste = Console.cadastrar();
+  Socio teste = Console.cadastrar();
+  print("CPF: ${teste.documento}. Telefone: ${teste.telefone}");
 
-  print(teste);
+  //String nomeProcurado = stdin.readLineSync()!;
+
+  //if (teste.nome == nomeProcurado) {
+  //  print(teste.nome);
+  //} else {
+  //  print('usuário não localizado ${teste.nome}');
+  //}
 }

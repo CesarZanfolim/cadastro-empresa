@@ -2,11 +2,11 @@ import 'package:desafio_dart/socio.dart';
 
 class SocioPF extends Socio {
   String cpf;
-  String telefone;
+  String telefoneSocio;
   SocioPF(
       {required this.cpf,
       required super.nome,
       required super.endereco,
-      required this.telefone})
-      : super(cpf, telefone);
+      required this.telefoneSocio})
+      : super(cpf, telefoneSocio);
 }
