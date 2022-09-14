@@ -1,7 +1,9 @@
+import 'package:desafio_dart/endereco.dart';
+
 abstract class Socio {
   String nome;
   final String _documento;
-  String endereco;
+  Endereco endereco;
   final String _telefone;
 
   Socio(
