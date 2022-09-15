@@ -12,9 +12,10 @@ class Console {
     String numeroDocumento;
     String numeroTelefone;
     Endereco endereco;
+    print('Preencha os dados do socio');
     print('Digite o nome completo');
     nome = stdin.readLineSync()!;
-    print('Digite o número do documento (CPF ou CPPJ)');
+    print('Digite o número do documento (CPF ou CNPJ)');
     String documentoDigitado = stdin.readLineSync()!;
     while (documentoDigitado.length != 11 && documentoDigitado.length != 14) {
       print(
@@ -23,7 +24,7 @@ class Console {
     }
     numeroDocumento = documentoDigitado;
     endereco = cadastrarEndereco();
-    print('digite o telefone (Ex.: 11999999999');
+    print('digite o telefone (Ex.: 11999999999)');
     String telefoneDigitado = stdin.readLineSync()!;
     while (documentoDigitado.length != 11) {
       print(
@@ -50,42 +51,51 @@ class Console {
     String logradouro;
     String numero;
     String? complemento;
+    String bairro;
     String cidade;
     String uf;
     String cep;
-    print('');
+    print('Logradouro:');
     logradouro = stdin.readLineSync()!;
-    print('');
+    print('Número:');
     numero = stdin.readLineSync()!;
-    print('');
+    print('Complemento:');
     complemento = stdin.readLineSync();
-    print('');
+    print('Bairro:');
+    bairro = stdin.readLineSync()!;
+    print('Cidade:');
     cidade = stdin.readLineSync()!;
-    print('');
+    print('UF:');
     uf = stdin.readLineSync()!;
-    print('');
+    print('CEP (apenas números):');
     cep = stdin.readLineSync()!;
-    return Endereco(complemento,
-        logradouro: logradouro,
-        numero: numero,
-        cidade: cidade,
-        uf: uf,
-        cep: cep);
+    return Endereco(
+      complemento,
+      logradouro: logradouro,
+      numero: numero,
+      bairro: bairro,
+      cidade: cidade,
+      uf: uf,
+      cep: cep,
+    );
   }
 
   static Empresa cadastrarEmpresa() {
     final id;
     String razaoSocial;
+    String nomeFantasia;
     String cnpj;
     Endereco endereco;
     Socio socio;
     final timeLog;
-
-    print('');
+    print('Preencha os dados da Empresa');
+    print('ID:');
     id = stdin.readLineSync()!;
-    print('');
+    print('Razão Social:');
     razaoSocial = stdin.readLineSync()!;
-    print('');
+    print('Nome Fantasia:');
+    nomeFantasia = stdin.readLineSync()!;
+    print('CNPJ:');
     cnpj = stdin.readLineSync()!;
     endereco = cadastrarEndereco();
     socio = cadastrarSocio();
@@ -94,6 +104,7 @@ class Console {
     return Empresa(
         id: id,
         razaoSocial: razaoSocial,
+        nomeFantasia: nomeFantasia,
         cnpj: cnpj,
         endereco: endereco,
         socio: socio,
