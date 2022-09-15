@@ -69,6 +69,7 @@ class Console {
     uf = stdin.readLineSync()!;
     print('CEP (apenas números):');
     cep = stdin.readLineSync()!;
+
     return Endereco(
       complemento,
       logradouro: logradouro,
@@ -109,5 +110,42 @@ class Console {
         endereco: endereco,
         socio: socio,
         timeLog: timeLog);
+  }
+
+  static void listarEmpresas(List<Empresa> empresas) {
+    empresas.sort((a, b) => a.razaoSocial.compareTo(b.razaoSocial));
+    for (var element in empresas) {
+      print('''
+--------------------------------------------------
+    ID: ${element.id}
+    Razão Social: ${element.razaoSocial}
+    Nome Fantasia: ${element.nomeFantasia}
+    CNPJ: ${element.cnpj}
+--------------------------------------------------
+''');
+    }
+  }
+
+  static void excluirEmpresa(List<Empresa> empresas) {
+    print('Digite o ID da Empresa que deseja excluir:');
+    String idExcluir = stdin.readLineSync()!;
+    for (var i = 0; i < empresas.length; i++) {
+      if (empresas[i].id == idExcluir) {
+        print('''
+    O nome fantasia da empresa selecionada é ${empresas[i].nomeFantasia}.
+            Tem certeza que deseja excluir?
+            1. Sim
+            2. Não        
+           ''');
+        String confirmaExcluir = stdin.readLineSync()!;
+        if (confirmaExcluir == '1') {
+          empresas.remove(empresas[i]);
+          print('Exclusão realizada');
+        } else {
+          print('Exclusão não realizada');
+        }
+        break;
+      } else {}
+    }
   }
 }
