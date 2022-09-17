@@ -9,6 +9,9 @@ import 'package:desafio_dart/socio_pj.dart';
 
 void main(List<String> args) {
   List<Empresa> empresas = [];
+  List<SocioPF> sociosPF = [];
+  List<SocioPJ> sociosPJ = [];
+  List<Endereco> enderecos = [];
 
   print('''
   MENU INICIAL
@@ -28,16 +31,7 @@ void main(List<String> args) {
         print('Cadastro realizado com sucesso. ID: ${cadastro.id}');
         break;
       case '2':
-        print('''
-    1. Buscar por CNPJ (Empresa)
-    2. Buscar por CPF/CNPJ (Sócio)
-        ''');
-        String opcaoPesquisa = stdin.readLineSync()!;
-        if (opcaoPesquisa == '1') {
-        } else if (opcaoPesquisa == '2') {
-        } else {
-          print('Opção inválida.');
-        }
+        Console.pesquisarEmpresa(empresas);
         break;
       case '3':
         Console.listarEmpresas(empresas);

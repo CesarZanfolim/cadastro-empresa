@@ -72,12 +72,12 @@ class Console {
 
     return Endereco(
       complemento,
+      cep,
       logradouro: logradouro,
       numero: numero,
       bairro: bairro,
       cidade: cidade,
       uf: uf,
-      cep: cep,
     );
   }
 
@@ -85,7 +85,8 @@ class Console {
     final id;
     String razaoSocial;
     String nomeFantasia;
-    String cnpj;
+    String numeroCNPJ;
+    String numeroTelefone;
     Endereco endereco;
     Socio socio;
     final timeLog;
@@ -97,16 +98,17 @@ class Console {
     print('Nome Fantasia:');
     nomeFantasia = stdin.readLineSync()!;
     print('CNPJ:');
-    cnpj = stdin.readLineSync()!;
+    numeroCNPJ = stdin.readLineSync()!;
+    print('Telefone Comercial:');
+    numeroTelefone = stdin.readLineSync()!;
     endereco = cadastrarEndereco();
     socio = cadastrarSocio();
     timeLog = DateTime.now();
 
-    return Empresa(
+    return Empresa(numeroCNPJ, numeroTelefone,
         id: id,
         razaoSocial: razaoSocial,
         nomeFantasia: nomeFantasia,
-        cnpj: cnpj,
         endereco: endereco,
         socio: socio,
         timeLog: timeLog);
@@ -118,9 +120,16 @@ class Console {
       print('''
 --------------------------------------------------
     ID: ${element.id}
+    CNPJ: ${element.cnpj}  Data Cadastro: ${element.timeLog}
     Razão Social: ${element.razaoSocial}
     Nome Fantasia: ${element.nomeFantasia}
-    CNPJ: ${element.cnpj}
+    Telefone Comercial: ${element.telefoneComercial}
+    Endereço: ${element.endereco.logradouro}, ${element.endereco.numero}, ${element.endereco.bairro}, ${element.endereco.cidade}/${element.endereco.uf.toUpperCase()}, ${element.endereco.cep}
+    Socio:
+    CPF: ${element.socio.documento}
+    Nome Completo: ${element.socio.nome}
+    Endereço: ${element.socio.endereco.logradouro}, ${element.socio.endereco.numero}, ${element.socio.endereco.bairro}, ${element.socio.endereco.cidade}/${element.socio.endereco.uf.toUpperCase()}, ${element.socio.endereco.cep}    
+    Telefone: ${element.socio.telefone}
 --------------------------------------------------
 ''');
     }
@@ -146,6 +155,34 @@ class Console {
         }
         break;
       } else {}
+    }
+  }
+
+  static void pesquisarEmpresa(List<Empresa> empresas) {
+    print('Digite o número do documento:');
+    String documentoDigitado = stdin.readLineSync()!;
+    for (var i = 0; i < empresas.length; i++) {
+      if (empresas[i].socio.documento == documentoDigitado) {
+        for (var element in empresas) {
+          print('''
+--------------------------------------------------
+    ID: ${element.id}
+    CNPJ: ${element.cnpj}  Data Cadastro: ${element.timeLog}
+    Razão Social: ${element.razaoSocial}
+    Nome Fantasia: ${element.nomeFantasia}
+    Telefone Comercial: ${element.telefoneComercial}
+    Endereço: ${element.endereco.logradouro}, ${element.endereco.numero}, ${element.endereco.bairro}, ${element.endereco.cidade}/${element.endereco.uf.toUpperCase()}, ${element.endereco.cep}
+    Socio:
+    CPF: ${element.socio.documento}
+    Nome Completo: ${element.socio.nome}
+    Endereço: ${element.socio.endereco.logradouro}, ${element.socio.endereco.numero}, ${element.socio.endereco.bairro}, ${element.socio.endereco.cidade}/${element.socio.endereco.uf.toUpperCase()}, ${element.socio.endereco.cep}    
+    Telefone: ${element.socio.telefone}
+--------------------------------------------------
+''');
+        }
+      } else {
+        print('Documento não localizado.');
+      }
     }
   }
 }

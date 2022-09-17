@@ -11,4 +11,6 @@ class SocioPJ extends Socio {
       required super.endereco,
       required this.telefoneSocio})
       : super(cnpj, telefoneSocio);
+
+  static listarSocio() {}
 }
