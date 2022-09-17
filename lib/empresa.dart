@@ -1,5 +1,6 @@
 import 'package:desafio_dart/endereco.dart';
 import 'package:desafio_dart/socio.dart';
+import 'package:uuid/uuid.dart';
 
 class Empresa {
   final id;

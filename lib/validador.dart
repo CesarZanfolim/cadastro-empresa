@@ -68,14 +68,4 @@ class Validador {
       return false;
     }
   }
-
-  static validarNum(String numeroDigitado) {
-    try {
-      var valor = int.parse(numeroDigitado);
-    } on FormatException {
-      return false;
-    } finally {
-      return true;
-    }
-  }
 }

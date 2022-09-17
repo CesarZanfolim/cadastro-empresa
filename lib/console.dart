@@ -3,6 +3,8 @@ import 'package:desafio_dart/endereco.dart';
 import 'package:desafio_dart/socio.dart';
 import 'package:desafio_dart/socio_pf.dart';
 import 'package:desafio_dart/socio_pj.dart';
+import 'package:desafio_dart/validador.dart';
+import 'package:uuid/uuid.dart';
 
 import 'empresa.dart';
 
@@ -22,6 +24,13 @@ class Console {
           'O documento digitado é inválido.\nPor favor, digite novamente utilizando apenas números:');
       documentoDigitado = stdin.readLineSync()!;
     }
+    while (Validador.validarCNPJ(documentoDigitado) == false ||
+        Validador.validarCPF(documentoDigitado) == false) {
+      print(
+          'O documento digitado é inválido.\nPor favor, digite novamente utilizando apenas números:');
+      documentoDigitado = stdin.readLineSync()!;
+    }
+
     numeroDocumento = documentoDigitado;
     endereco = cadastrarEndereco();
     print('digite o telefone (Ex.: 11999999999)');
@@ -68,8 +77,12 @@ class Console {
     print('UF:');
     uf = stdin.readLineSync()!;
     print('CEP (apenas números):');
-    cep = stdin.readLineSync()!;
-
+    String cepDigitado = stdin.readLineSync()!;
+    while (cepDigitado.length != 8) {
+      print('CEP inválido.\nPor favor digite apenas os números');
+      cepDigitado = stdin.readLineSync()!;
+    }
+    cep = cepDigitado;
     return Endereco(
       complemento,
       cep,
@@ -91,16 +104,27 @@ class Console {
     Socio socio;
     final timeLog;
     print('Preencha os dados da Empresa');
-    print('ID:');
-    id = stdin.readLineSync()!;
+    id = Uuid().v1();
     print('Razão Social:');
     razaoSocial = stdin.readLineSync()!;
     print('Nome Fantasia:');
     nomeFantasia = stdin.readLineSync()!;
     print('CNPJ:');
-    numeroCNPJ = stdin.readLineSync()!;
+    String cnpjDigitado = stdin.readLineSync()!;
+    while (cnpjDigitado.length != 14 &&
+        Validador.validarCNPJ(cnpjDigitado) == false) {
+      print(
+          'CNPJ inválido.\nPor favor, digite novamente utilizando apenas números');
+    }
+    numeroCNPJ = cnpjDigitado;
     print('Telefone Comercial:');
-    numeroTelefone = stdin.readLineSync()!;
+    String numeroTelefoneDigitado = stdin.readLineSync()!;
+    while (numeroTelefoneDigitado.length != 11) {
+      print(
+          'Número inválido.\n Digite apenas os numeros como no exempo\n11999999999');
+      numeroTelefoneDigitado = stdin.readLineSync()!;
+    }
+    numeroTelefone = numeroTelefoneDigitado;
     endereco = cadastrarEndereco();
     socio = cadastrarSocio();
     timeLog = DateTime.now();
@@ -162,7 +186,7 @@ class Console {
     print('Digite o número do documento:');
     String documentoDigitado = stdin.readLineSync()!;
     for (var i = 0; i < empresas.length; i++) {
-      if (empresas[i].socio.documento == documentoDigitado) {
+      if (empresas[i].socio.documentoNumeros == documentoDigitado) {
         for (var element in empresas) {
           print('''
 --------------------------------------------------

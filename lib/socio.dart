@@ -29,4 +29,6 @@ abstract class Socio {
       return "Número inválido";
     }
   }
+
+  String get documentoNumeros => _documento;
 }
